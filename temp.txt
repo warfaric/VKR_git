@@ -1,0 +1,24 @@
+package ru.warfaric.redgmapp.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import java.util.List;
+
+@Controller
+public class CatalogController {
+    @GetMapping("/")
+    public String home(Model model) {
+        model.addAttribute("categories", List.of(
+                new Category("Красная икра"),
+                new Category("Фасованная красная икра"),
+                new Category("Краб"),
+                new Category("Консервы"),
+                new Category("Деликатесы")
+        ));
+        return "catalog";
+    }
+
+    record Category(String name) {}
+}
+

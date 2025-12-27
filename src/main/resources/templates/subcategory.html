@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${category.name}">Подкаталог</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(180deg, #ffffff 0%, #f6f1f1 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .subcategory-shell {
+            width: min(420px, 100%);
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            color: #b11212;
+            font-weight: 600;
+            text-decoration: none;
+            margin-bottom: 1.25rem;
+        }
+
+        .back-link:hover {
+            color: #8c0e0e;
+        }
+
+        .subcategory-card {
+            background: #fff6f4;
+            border-radius: 20px;
+            box-shadow: 0 12px 30px rgba(177, 18, 18, 0.12);
+            padding: 0.85rem 0.6rem;
+        }
+
+        .subcategory-item {
+            display: flex;
+            align-items: center;
+            gap: 0.85rem;
+            padding: 0.85rem;
+            border-radius: 14px;
+            transition: background-color 0.2s ease-in-out, transform 0.2s ease-in-out;
+            color: inherit;
+        }
+
+        .subcategory-item:hover {
+            background-color: rgba(177, 18, 18, 0.08);
+            transform: translateX(4px);
+            text-decoration: none;
+        }
+
+        .subcategory-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: rgba(177, 18, 18, 0.12);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #b11212;
+            font-size: 1.15rem;
+        }
+
+        .subcategory-name {
+            font-weight: 600;
+            color: #3d3d3d;
+        }
+    </style>
+</head>
+<body>
+<main class="subcategory-shell">
+    <a class="back-link" th:href="@{/}">
+        <i class="bi bi-arrow-left"></i>
+        В каталог
+    </a>
+
+    <h1 class="h4 mb-3" th:text="${category.name}">Категория</h1>
+    <p class="text-muted small mb-4">Выберите подкатегорию, чтобы посмотреть товары.</p>
+
+    <section th:if="${#lists.isEmpty(subcategories)}" class="alert alert-warning">
+        Подкатегорий пока нет.
+    </section>
+
+    <section th:if="${!#lists.isEmpty(subcategories)}" class="subcategory-card">
+        <a class="subcategory-item text-decoration-none"
+           th:each="subcategory : ${subcategories}"
+           th:href="@{/catalog/{categoryId}/subcategory/{subcategoryId}(categoryId=${category.id}, subcategoryId=${subcategory.id})}">
+            <span class="subcategory-icon">
+                <i class="bi bi-flower3"></i>
+            </span>
+            <span class="subcategory-name" th:text="${subcategory.name}">Подкатегория</span>
+            <i class="bi bi-chevron-right ms-auto text-muted"></i>
+        </a>
+    </section>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
