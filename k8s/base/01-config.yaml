@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: vkr-config
+  namespace: vkr
+data:
+  SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/redgmapp
+  SPRING_DATASOURCE_USERNAME: redgmapp
+  SERVER_PORT_CATALOG: "8081"
+  SERVER_PORT_ADMIN: "8082"
+  APP_ADMIN_USERNAME: admin
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: vkr-secrets
+  namespace: vkr
+type: Opaque
+stringData:
+  SPRING_DATASOURCE_PASSWORD: redgmapp
+  ADMIN_PASSWORD: admin

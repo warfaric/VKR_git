@@ -1,0 +1,57 @@
+services:
+  db:
+    image: postgres:16
+    container_name: vkr-postgres
+    environment:
+      POSTGRES_DB: redgmapp
+      POSTGRES_USER: redgmapp
+      POSTGRES_PASSWORD: redgmapp
+    ports:
+      - "5432:5432"
+    volumes:
+      - vkr_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U redgmapp -d redgmapp"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+
+  catalog:
+    build:
+      context: .
+      dockerfile: catalog-service/Dockerfile
+    container_name: vkr-catalog
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/redgmapp
+      SPRING_DATASOURCE_USERNAME: redgmapp
+      SPRING_DATASOURCE_PASSWORD: redgmapp
+      SERVER_PORT: 8081
+    ports:
+      - "8081:8081"
+
+  admin:
+    build:
+      context: .
+      dockerfile: admin-service/Dockerfile
+    container_name: vkr-admin
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/redgmapp
+      SPRING_DATASOURCE_USERNAME: redgmapp
+      SPRING_DATASOURCE_PASSWORD: redgmapp
+      SERVER_PORT: 8082
+
+      # username берётся из app.admin.username (Spring сам мапит env → property)
+      APP_ADMIN_USERNAME: admin
+      # пароль у тебя читается из ENV ADMIN_PASSWORD в SecurityConfig
+      ADMIN_PASSWORD: admin
+    ports:
+      - "8082:8082"
+
+volumes:
+  vkr_pgdata:
