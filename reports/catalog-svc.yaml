@@ -1,0 +1,31 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"catalog","namespace":"vkr"},"spec":{"ports":[{"nodePort":30080,"port":8081,"targetPort":8081}],"selector":{"app":"catalog"},"type":"NodePort"}}
+  creationTimestamp: "2025-12-29T10:05:55Z"
+  name: catalog
+  namespace: vkr
+  resourceVersion: "5809"
+  uid: 975ffd86-9eec-45c4-b61f-ccf0ea5946f9
+spec:
+  clusterIP: 10.96.168.65
+  clusterIPs:
+  - 10.96.168.65
+  externalTrafficPolicy: Cluster
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - nodePort: 30080
+    port: 8081
+    protocol: TCP
+    targetPort: 8081
+  selector:
+    app: catalog
+  sessionAffinity: None
+  type: NodePort
+status:
+  loadBalancer: {}

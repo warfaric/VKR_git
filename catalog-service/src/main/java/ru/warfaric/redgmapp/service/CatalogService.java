@@ -28,16 +28,16 @@ public class CatalogService {
     @Transactional(readOnly = true)
     public CategoryEntity getCategoryWithSubcategories(Long categoryId) {
         return categoryRepository.findWithSubcategoriesById(categoryId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Категория не найдена"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"));
     }
 
     @Transactional(readOnly = true)
     public SubcategoryEntity getSubcategoryWithProducts(Long categoryId, Long subcategoryId) {
         SubcategoryEntity subcategory = subcategoryRepository.findWithProductsById(subcategoryId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Подкаталог не найден"));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ"));
 
         if (subcategory.getCategory() == null || !subcategory.getCategory().getId().equals(categoryId)) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Подкаталог не относится к категории");
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ");
         }
 
         return subcategory;

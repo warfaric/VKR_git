@@ -1,0 +1,4 @@
+﻿NAME       TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE   SELECTOR
+admin      ClusterIP   10.96.195.49   <none>        8082/TCP         66s   app=admin
+catalog    NodePort    10.96.168.65   <none>        8081:30080/TCP   66s   app=catalog
+postgres   ClusterIP   10.96.239.97   <none>        5432/TCP         66s   app=postgres

@@ -1,0 +1,4 @@
+﻿NAME                       READY   STATUS    RESTARTS   AGE   IP           NODE                NOMINATED NODE   READINESS GATES
+admin-678878dd89-qxfmw     1/1     Running   0          42s   10.244.0.7   vkr-control-plane   <none>           <none>
+catalog-65f6fb9cbc-s54f7   1/1     Running   0          42s   10.244.0.6   vkr-control-plane   <none>           <none>
+postgres-7848d869-7q72j    1/1     Running   0          42s   10.244.0.5   vkr-control-plane   <none>           <none>

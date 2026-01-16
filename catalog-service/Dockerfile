@@ -20,6 +20,9 @@ RUN mvn -q -DskipTests -pl catalog-service -am package
 
 # ---------- runtime stage ----------
 FROM eclipse-temurin:17-jre
+RUN apt-get update \
+    && apt-get upgrade -y \
+    && rm -rf /var/lib/apt/lists/*
 WORKDIR /app
 COPY --from=build /workspace/catalog-service/target/*.jar /app/app.jar
 

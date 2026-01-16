@@ -1,0 +1,4 @@
+﻿NAME       READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES            SELECTOR
+admin      1/1     1            1           71s   admin        vkr/admin:1.0     app=admin
+catalog    1/1     1            1           71s   catalog      vkr/catalog:1.0   app=catalog
+postgres   1/1     1            1           71s   postgres     postgres:16       app=postgres

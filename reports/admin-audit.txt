@@ -1,0 +1,5 @@
+﻿
+reports\admin-deploy.yaml:89:        resources: {}
+reports\admin-deploy.yaml:95:      securityContext: {}
+
+

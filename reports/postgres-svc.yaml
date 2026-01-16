@@ -1,0 +1,29 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"postgres","namespace":"vkr"},"spec":{"ports":[{"port":5432,"targetPort":5432}],"selector":{"app":"postgres"}}}
+  creationTimestamp: "2025-12-29T10:05:55Z"
+  name: postgres
+  namespace: vkr
+  resourceVersion: "5787"
+  uid: 31b4683d-c3e8-49c2-9fcb-6ba728f935a0
+spec:
+  clusterIP: 10.96.239.97
+  clusterIPs:
+  - 10.96.239.97
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 5432
+    protocol: TCP
+    targetPort: 5432
+  selector:
+    app: postgres
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}

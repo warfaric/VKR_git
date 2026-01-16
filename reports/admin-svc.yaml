@@ -1,0 +1,30 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"admin","namespace":"vkr"},"spec":{"ports":[{"name":"http","port":8082,"targetPort":8082}],"selector":{"app":"admin"},"type":"ClusterIP"}}
+  creationTimestamp: "2025-12-29T10:05:55Z"
+  name: admin
+  namespace: vkr
+  resourceVersion: "5824"
+  uid: 346115ca-64a5-4d47-a7e3-88a394bb78a6
+spec:
+  clusterIP: 10.96.195.49
+  clusterIPs:
+  - 10.96.195.49
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - name: http
+    port: 8082
+    protocol: TCP
+    targetPort: 8082
+  selector:
+    app: admin
+  sessionAffinity: None
+  type: ClusterIP
+status:
+  loadBalancer: {}
